@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Editor</title>
+
+        <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
+        
+        <script src="/codemirror/lib/codemirror.js"></script>
+        <script src="/codemirror/mode/javascript/javascript.js"></script>
+        
+        <script src="/codemirror/addon/selection/active-line.js"></script>
+        <script src="/codemirror/addon/edit/matchbrackets.js"></script>
+
+    </head>
+    <body>
+        <textarea id="code">
+            let a = () => {
+                conssole.log('a');
+            }
+        </textarea>
+
+        <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true
+            });
+
+        </script>
+    </body>
+</html>

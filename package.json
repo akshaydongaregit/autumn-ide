@@ -1,0 +1,32 @@
+{
+  "name": "autumn",
+  "version": "1.0.0",
+  "description": "ide for beginners",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshaydongaregit/autumn.git"
+  },
+  "author": "akshay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshaydongaregit/autumn/issues"
+  },
+  "homepage": "https://github.com/akshaydongaregit/autumn#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/ws": "^6.0.4",
+    "nodemon": "^2.0.1"
+  }
+}
