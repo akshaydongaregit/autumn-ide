@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("../fonts/Ubuntu-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url("../fonts/Ubuntu-Bold.ttf");
+    font-weight: bold;
+}
+
+body{
+  background: rgb(255, 253, 255); 
+}
+
+* {
+    font: normal 100% 'Ubuntu' , 'calibri';
+}
+
+/*  explorer */
+.explorer .handle{
+  position:absolute;
+  z-index:99;
+}
+.explorer.active .handle div{
+  background:#208eef;
+}
+.explorer .nodes{
+    position:absolute;
+    top:0px;
+    left:-50%;
+    margin:0px;
+    width:40%;
+    height:100vh;
+    background:#fdffff;
+    color:#393c40;
+    box-shadow:#eaeef3 0px 0px 10px 2px;
+    border:2px solid #f1f1f5;
+}
+.explorer .nodes .node:nth-child(1){
+  margin-top:70px;
+}
+.explorer.active .nodes{
+    left:0%;
+    transition:200ms cubic-bezier(0, 0, 0.65, 0.79);
+    width:max-content;
+    padding-right:1%;
+}
+.explorer .node{
+    font-size: 98%;
+    margin-left: 6px;
+    padding: 2px;
+    box-sizing:border-box;
+    width:fit-content;
+    background: #e8090900;
+}
+.explorer .node.fold >.node{
+  display: none;
+}
+.explorer .node label:hover{
+    color: #2f86ff;
+}
+.explorer .handle div{
+    margin: 0px;
+    border-radius: 100px;
+    margin-top: 8px;
+    width:40px;
+    height: 8px;
+    background: #2d1831;
+  } 
+  .explorer .handle div:nth-child(2) {
+    width: 30px;
+  }
+  
+  .explorer .handle:hover div:nth-child(2) {
+    width: 50px;
+    transition: 200ms ease-in-out ;
+  }
+  .explorer .handle:hover div:nth-child(1) ,.explorer .handle:hover div:nth-child(3) {
+    width: 40px;
+    transition: 200ms ease-in-out ;
+  }
+  
+  /*handle animation*/
+  .explorer.active .handle div:nth-child(2){
+    display: none;
+  }
+  
+  .explorer.active .handle div:nth-child(1){
+    transform: translate(0%,280%) rotate(45deg);
+    transition: .6s ease-in-out;
+  }
+  
+  .explorer.active .handle div:nth-child(3){
+    transform: translate(0%,0%) rotate(135deg);
+    transition: .6s ease-in-out;
+  }
+  
