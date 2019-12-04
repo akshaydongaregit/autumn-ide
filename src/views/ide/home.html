@@ -4,9 +4,27 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="/resources/css/home.css"/>
+        <link rel="stylesheet" href="/resources/css/icons.css"/>
+
+        <!-- lib for codemirror -->
+
+        <link rel="stylesheet" href="/resources/lib/codemirror/lib/codemirror.css">
         
+        <script src="/resources/lib/codemirror/lib/codemirror.js"></script>
+        <script src="/resources/lib/codemirror/mode/javascript/javascript.js"></script>
+        
+        <script src="/resources/lib/codemirror/addon/selection/active-line.js"></script>
+        <script src="/resources/lib/codemirror/addon/edit/matchbrackets.js"></script>
+
     </head>
     <body>
+        <div class="header">
+            Autumn
+        </div>
+        <div class="floating-options">
+                <div class="option save"></div>
+                <div class="option run"></div>
+            </div>
         <div class="explorer">
           
             <div class="handle" onclick='document.querySelector(".explorer").classList.toggle("active");'>
@@ -17,28 +35,42 @@
 
             <div class="nodes">
                 <div class="node">
-                    <label>hello</label>
+                    <label class="non-leaf">hello</label>
                     <div class="node">
-                        <label>css</label>
+                        <label class="non-leaf">css</label>
                         <div class="node">
-                                <label>main.css</label>
+                                <label class="leaf">main.css</label>
                             </div>
                     </div>
                     <div class="node">
-                        <label>main.js</label>
+                        <label class="leaf">main.js</label>
                     </div>
                     <div class="node">
-                        <label>index.js</label>
+                        <label class="leaf">index.js</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="body">
-            <div class="options"></div>
+            
+            <div class="editors">
+                <textarea id="code" >  
+//declaring function in javascript.
+let hello = () => {
+    console.log('Hello . Welcome in the realm of Autumn.');
+}
+
+//calling function.
+hello();
+
+                </textarea>
+            </div>
         </div>
 
-        <div class="options">
-
+        <div class="footer options">
+            <div class="option"> <div class="option-icon project"></div> <label>Project</label> </div>
+            <div class="option"> <div class="option-icon options-icn"></div> <label>Options</label> </div>
+            <div class="option"> <div class="option-icon share"></div> <label>Share</label> </div>
         </div>
 
         <script src="/resources/js/home.js"></script>
