@@ -10,7 +10,8 @@ $$('.explorer .node label').forEach( el => {
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
         styleActiveLine: true,
-        matchBrackets: true
+        matchBrackets: true,
+        mode:'javascript'
     });
 
     let save = () =>{
@@ -23,4 +24,8 @@ $$('.explorer .node label').forEach( el => {
         }).catch((err)=>{
             console.log('err :'+err);
         });
+    }
+
+    let showOut = ()=>{
+        $('#out').classList.add("show");
     }

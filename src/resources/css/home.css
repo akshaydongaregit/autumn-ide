@@ -151,7 +151,7 @@ display: none;
 /*********** explorer css ends here *****************/
 
 .footer.options{
-  position: absolute;
+  position: fixed;
   left:0px;
   bottom: 0px;
   width: 100%;
@@ -179,7 +179,7 @@ display: none;
   height:40px;
   margin:7px auto 5px;
   /*background:#ff000000;*/
-  
+
   background-size: cover;
   background-repeat: no-repeat ;
 }
@@ -198,24 +198,89 @@ display: none;
 
 .floating-options{
   position:absolute;
-  right:5px;
+  right:0px;
+  top:1px;
   float:right;
-  width:80%;
-  height:20px;
-  /*background:#ff0000c9;*/
+  width:max-content;
+  height:max-content;
   z-index:95;
+  display: flex;
+}
+.floating-options .options{
+  display: flex;
+  background:#fbfbfb;
+  width:max-content;
+  height:max-content;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+  border:1px solid #675f5f;
+  border-right:none;
+  display: none;
+}
+
+.floating-options.active .options{
+  display: flex;
 }
 
 .floating-options .option{
-  float:right;
-  width:25px;
-  height:25px;
-  /*background-color:#ff0000d1;*/
-  margin:5px 5px 0px 0px;
+  width:30px;
+  height:30px;
+  margin: auto;
+  margin-right:5px ;
+  margin-top:5px;
+  margin-bottom:5px;
   background-size:cover;
   background-repeat:no-repeat;
   z-index:96;
 }
+
+.floating-options .option:first-of-type{
+  margin-left:10px;
+}
+.floating-options .handle{
+  width:35px;
+  height: 40px;
+  background: #ffffff;
+  border:1px solid #00a5e4;
+  /*border-left:none;*/
+}
+
+.floating-options.active .handle{
+  width:35px;
+}
+
+.floating-options .handle div{
+  width: 8px;
+  height: 8px;
+  margin: auto;
+  margin-top: 4px;
+  background: #00a5e4;
+  border-radius:50px;
+}
+.floating-options.active .handle div{
+  width: 25px;
+  height: 5px;
+  margin: auto;
+  margin-top: 7px;
+  background: #00a5e4;
+  border-radius:2px;
+}
+
+.floating-options.active .handle div:nth-child(1){
+  transform: translate(0%,210%) rotate(45deg);
+  border-radius: 5px;
+}
+
+.floating-options.active .handle div:nth-child(2){
+  display:none;
+}
+
+.floating-options.active .handle div:nth-child(3){
+  transform: translate(0%,-30%) rotate(-45deg);
+  border-radius: 5px;
+}
+
+/*
 .floating-options .option:hover:before{
   content: '';
   display: block;
@@ -227,6 +292,8 @@ display: none;
   z-index: -1;
   transform: translate(-7px,-5px);
 }
+*/
+
 /****** floating options over *******/
 
 /******** style for editors ********/
@@ -250,4 +317,379 @@ display: none;
   border: 1px solid #f9f9f9;
   box-shadow:#e4e4ec 0px 0px 5px 1px;
   z-index:0;
+}
+
+/********************/
+/*
+ output css
+******************/
+#out{
+  position:absolute;
+  z-index:1000;
+  top:1%;
+  left:1%;
+  width:98%;
+  height:98%;
+  background:#fbf9f8;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../fonts/Ubuntu-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../fonts/Ubuntu-Bold.ttf");
+  font-weight: bold;
+}
+
+body{
+background: rgb(255, 253, 255); 
+background:#fdfdfc;
+}
+
+.header{
+  position:absolute;
+  top:2px;
+  left:0px;
+  width:100%;
+  height:20px;
+  background:#f0f8ff00;
+  text-align:center;
+  font:bold 97% 'Ubuntu';
+  color: #00a5e4;
+}
+
+/*  explorer */
+.explorer .handle{
+position:absolute;
+z-index:99;
+}
+.explorer.active .handle div{background:#208eef;}
+.explorer .nodes{
+  position:absolute;
+  top:0px;
+  left:-50%;
+  margin:0px;
+  width:40%;
+  height:100vh;
+  background:#fdfdfd;
+  color:#32373c;
+  box-shadow:#eaeef3 0px 0px 10px 2px;
+  border:2px solid #f1f1f5;
+}
+.explorer .nodes .node:nth-child(1){
+margin-top:70px;
+}
+.explorer.active .nodes{
+  left:0%;
+  transition:200ms cubic-bezier(0, 0, 0.65, 0.79);
+  width:max-content;
+  padding-right:1%;
+  z-index:98;
+}
+.explorer .node{
+  font-size: 98%;
+  margin-left: 6px;
+  padding: 2px;
+  box-sizing:border-box;
+  width:fit-content;
+  background: #e8090900;
+  font:normal 16px 'Ubuntu';
+}
+.explorer .node.fold >.node{
+display: none;
+}
+.explorer .node label:hover{
+  color: #00a5e4;
+}
+.explorer .handle div{
+  margin: 0px;
+  border-radius: 100px;
+  margin-top: 8px;
+  width:40px;
+  height: 8px;
+  background: #2d1831;
+} 
+.explorer .handle div:nth-child(2) {
+  width: 30px;
+}
+
+.explorer .handle:hover div{
+  background-color: 208eef;
+}
+.explorer .handle:hover div:nth-child(2) {
+  width: 30px;
+  transition: 200ms ease-in-out ;
+}
+.explorer .handle:hover div:nth-child(1) ,.explorer .handle:hover div:nth-child(3) {
+  width: 40px;
+  transition: 200ms ease-in-out ;
+} 
+
+/*handle animation*/
+.explorer.active .handle div:nth-child(2){
+  display: none;
+}
+
+.explorer.active .handle div:nth-child(1){
+  transform: translate(0%,280%) rotate(45deg);
+  transition: .6s ease-in-out;
+}
+
+.explorer.active .handle div:nth-child(3){
+  transform: translate(0%,0%) rotate(135deg);
+  transition: .6s ease-in-out;
+}
+
+.node.fold .non-leaf::before {
+  content: '';
+  width: fit-content;
+  height: fit-content;
+  padding-left: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: -25%;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0OTIuMDA0IDQ5Mi4wMDQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5Mi4wMDQgNDkyLjAwNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM4Mi42NzgsMjI2LjgwNEwxNjMuNzMsNy44NkMxNTguNjY2LDIuNzkyLDE1MS45MDYsMCwxNDQuNjk4LDBzLTEzLjk2OCwyLjc5Mi0xOS4wMzIsNy44NmwtMTYuMTI0LDE2LjEyICAgIGMtMTAuNDkyLDEwLjUwNC0xMC40OTIsMjcuNTc2LDAsMzguMDY0TDI5My4zOTgsMjQ1LjlsLTE4NC4wNiwxODQuMDZjLTUuMDY0LDUuMDY4LTcuODYsMTEuODI0LTcuODYsMTkuMDI4ICAgIGMwLDcuMjEyLDIuNzk2LDEzLjk2OCw3Ljg2LDE5LjA0bDE2LjEyNCwxNi4xMTZjNS4wNjgsNS4wNjgsMTEuODI0LDcuODYsMTkuMDMyLDcuODZzMTMuOTY4LTIuNzkyLDE5LjAzMi03Ljg2TDM4Mi42NzgsMjY1ICAgIGM1LjA3Ni01LjA4NCw3Ljg2NC0xMS44NzIsNy44NDgtMTkuMDg4QzM5MC41NDIsMjM4LjY2OCwzODcuNzU0LDIzMS44ODQsMzgyLjY3OCwyMjYuODA0eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+}
+
+.non-leaf::before {
+  content: '';
+  width: fit-content;
+  height: fit-content;
+  padding-left: 10px;
+  margin-right: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: -25%;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDUxLjg0NyA0NTEuODQ3IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTEuODQ3IDQ1MS44NDc7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMjI1LjkyMywzNTQuNzA2Yy04LjA5OCwwLTE2LjE5NS0zLjA5Mi0yMi4zNjktOS4yNjNMOS4yNywxNTEuMTU3Yy0xMi4zNTktMTIuMzU5LTEyLjM1OS0zMi4zOTcsMC00NC43NTEgICBjMTIuMzU0LTEyLjM1NCwzMi4zODgtMTIuMzU0LDQ0Ljc0OCwwbDE3MS45MDUsMTcxLjkxNWwxNzEuOTA2LTE3MS45MDljMTIuMzU5LTEyLjM1NCwzMi4zOTEtMTIuMzU0LDQ0Ljc0NCwwICAgYzEyLjM2NSwxMi4zNTQsMTIuMzY1LDMyLjM5MiwwLDQ0Ljc1MUwyNDguMjkyLDM0NS40NDlDMjQyLjExNSwzNTEuNjIxLDIzNC4wMTgsMzU0LjcwNiwyMjUuOTIzLDM1NC43MDZ6IiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+}
+
+.node .leaf::before{
+  content: '';
+  width: fit-content;
+  height: fit-content;
+  padding-left: 10px;
+  margin-right: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: -25%;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNTcyLjQwNCA1NzIuNDA0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1NzIuNDA0IDU3Mi40MDQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMTMyLjEwOSw1NzIuNDA0aDIxMi41MjhjMC4wNjgsMCwwLjEzNS0wLjAxNCwwLjIwMy0wLjAxNGMwLjA4LDAsMC4xNTgsMC4wMTQsMC4yMzgsMC4wMTQgICAgYzE1LjkzLDAsMzEuNTgtNi4yMTksNDMuMjg3LTE3LjkyNmwzMS4yMjUtMzEuMjI1bDYzLjY2Ni02Mi43NjJjMTEuMDMzLTEwLjg4MSwxNy40MzYtMjUuNTI1LDE4LjEwNC00MC45NDEgICAgYzAuMDEyLTAuMjk1LDAuMDM1LTAuNTgyLDAuMDQzLTAuODc1YzAuMDE4LTAuNTg4LDAuMDkyLTEuMTc2LDAuMDkyLTEuNzY0VjYxLjJjMC0zMy44MDEtMjcuNC02MS4yLTYxLjIwMS02MS4ySDEzMi4xMDkgICAgYy0zMy44MDEsMC02MS4yLDI3LjM5OS02MS4yLDYxLjJ2NDUwLjAwM0M3MC45MDksNTQ1LjAwNCw5OC4zMDksNTcyLjQwNCwxMzIuMTA5LDU3Mi40MDR6IE0zNzYuNDc2LDQ3OS44MjZsLTMxLjM3OSwzMS4zNzcgICAgdi0wLjQ0N1Y0MTZoOTUuMTk3TDM3Ni40NzYsNDc5LjgyNnogTTEzMi4xMDksNjEuMmgzMDguMTg1djI5My42MDFoLTk1LjIwM2MtMzMuODAxLDAtNjEuMiwyNy4zOTgtNjEuMiw2MS4xOTl2OTUuMjAzSDEzMi4xMDkgICAgVjYxLjJ6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHdpZHRoPSI1MTJweCI+PHBhdGggZD0ibTExLjcwNyAzLjI5Mjk3LTMtM2MtLjE4NzUtLjE4NzUtLjQ0MTg5NS0uMjkyOTY5LS43MDcwMzEtLjI5Mjk2OWgtN2MtLjU1MjI0NiAwLTEgLjQ0Nzc1NC0xIDF2MTRjMCAuNTUyNzM0LjQ0Nzc1NCAxIDEgMWgxMGMuNTUyMjQ2IDAgMS0uNDQ3MjY2IDEtMXYtMTFjMC0uMjY1MTM3LS4xMDU0NjktLjUxOTUzMS0uMjkyOTY5LS43MDcwMzF6bS0yLjcwNzAzLjcwNzAzMWMtLjU1MjMwNyAwLTEtLjQ0Nzc1NC0xLTF2LTJsMyAzeiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMikiIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4K);
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA0NDMuMjk0IDQ0My4yOTQiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA0NDMuMjk0IDQ0My4yOTQiIHdpZHRoPSI1MTJweCI+PHBhdGggZD0ibTM4My44MjQgMTE0Ljg4Mi0xMTAuODI0LTExMC44MjRjLTIuNTk3LTIuNTk3LTYuMTE0LTQuMDU4LTkuNzk0LTQuMDU4aC0xODAuMDg4Yy0xNS4yNzQgMC0yNy43MDYgMTIuNDMyLTI3LjcwNiAyNy43MDZ2Mzg3Ljg4MmMwIDE1LjI3MyAxMi40MzIgMjcuNzA2IDI3LjcwNiAyNy43MDZoMjc3LjA1OWMxNS4yNzMgMCAyNy43MDYtMTIuNDMyIDI3LjcwNi0yNy43MDZ2LTI5MC45MTJjLS4wMDEtMy42NzktMS40NjItNy4xOTctNC4wNTktOS43OTR6bS0xMDYuNzY1LTY3LjU4NyA2My41MjkgNjMuNTI5aC02My41Mjl6bTgzLjExNyAzNjguMjk0aC0yNzcuMDU4di0zODcuODgyaDE2Ni4yMzV2ODMuMTE4YzAgMTUuMjczIDEyLjQzMiAyNy43MDYgMjcuNzA2IDI3LjcwNmg4My4xMTh2Mjc3LjA1OHoiIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4K);
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA0NDMuMjk0IDQ0My4yOTQiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA0NDMuMjk0IDQ0My4yOTQiIHdpZHRoPSI1MTJweCI+PHBhdGggZD0ibTM4My44MjQgMTE0Ljg4Mi0xMTAuODI0LTExMC44MjRjLTIuNTk3LTIuNTk3LTYuMTE0LTQuMDU4LTkuNzk0LTQuMDU4aC0xODAuMDg4Yy0xNS4yNzQgMC0yNy43MDYgMTIuNDMyLTI3LjcwNiAyNy43MDZ2Mzg3Ljg4MmMwIDE1LjI3MyAxMi40MzIgMjcuNzA2IDI3LjcwNiAyNy43MDZoMjc3LjA1OWMxNS4yNzMgMCAyNy43MDYtMTIuNDMyIDI3LjcwNi0yNy43MDZ2LTI5MC45MTJjLS4wMDEtMy42NzktMS40NjItNy4xOTctNC4wNTktOS43OTR6bS0xMDYuNzY1LTY3LjU4NyA2My41MjkgNjMuNTI5aC02My41Mjl6bTgzLjExNyAzNjguMjk0aC0yNzcuMDU4di0zODcuODgyaDE2Ni4yMzV2ODMuMTE4YzAgMTUuMjczIDEyLjQzMiAyNy43MDYgMjcuNzA2IDI3LjcwNmg4My4xMTh2Mjc3LjA1OHoiIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4K);
+}
+
+/*********** explorer css ends here *****************/
+
+.footer.options{
+  position: absolute;
+  left:0px;
+  bottom: 0px;
+  width: 100%;
+  height: 65px;
+  background-color: #ececec;
+  z-index: 97;
+  box-shadow:#f9f9f9 0px 2px 5px 2px;
+  border-top:0px solid #e1e4e6;
+}
+
+.footer.options {
+    display:flex;
+  flex-wrap: nowrap;
+}
+.footer.options .option{
+  display:block;
+  width:33%;
+  background:#fb343400;
+  font:normal 75% 'Ubuntu';
+  text-align:center;
+  color:#2b2c2d;
+}
+.footer.options .option:hover{
+  color:#00a5e4;
+}
+.footer.options .option .option-icon{
+  width:35px;
+  height:35px;
+  margin:6px auto 4px;
+  /*background:#ff000000;*/
+
+  background-size: cover;
+  background-repeat: no-repeat ;
+}
+/********* footer options ends ***********/
+
+.body{
+  display:block;
+  background:#b4e6b800;
+  position:absolute;
+  top:25px;
+  left:0px;
+  bottom:65px;
+  right:0px;
+  overflow:auto;
+}
+
+.floating-options{
+  position:absolute;
+  right:0px;
+  top:2px;
+  float:right;
+  width:max-content;
+  height:max-content;
+  z-index:95;
+  display: flex;
+}
+.floating-options .options{
+  display: flex;
+  background:#fbfbfb;
+  width:max-content;
+  height:max-content;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+  border:1px solid #675f5f;
+  border-right:none;
+  display: none;
+}
+
+.floating-options.active .options{
+  display: flex;
+}
+
+.floating-options .option{
+  width:30px;
+  height:30px;
+  margin: auto;
+  margin-right:5px ;
+  margin-top:5px;
+  margin-bottom:5px;
+  background-size:cover;
+  background-repeat:no-repeat;
+  z-index:96;
+}
+
+.floating-options .option:first-of-type{
+  margin-left:10px;
+}
+.floating-options .handle{
+  width:35px;
+  height: 40px;
+  background: #ffffff;
+  border:1px solid #00a5e4;
+  /*border-left:none;*/
+}
+
+.floating-options.active .handle{
+  width:35px;
+}
+
+.floating-options .handle div{
+  width: 8px;
+  height: 8px;
+  margin: auto;
+  margin-top: 4px;
+  background: #00a5e4;
+  border-radius:50px;
+}
+.floating-options.active .handle div{
+  width: 25px;
+  height: 5px;
+  margin: auto;
+  margin-top: 7px;
+  background: #00a5e4;
+  border-radius:2px;
+}
+
+.floating-options.active .handle div:nth-child(1){
+  transform: translate(0%,210%) rotate(45deg);
+  border-radius: 5px;
+}
+
+.floating-options.active .handle div:nth-child(2){
+  display:none;
+}
+
+.floating-options.active .handle div:nth-child(3){
+  transform: translate(0%,-30%) rotate(-45deg);
+  border-radius: 5px;
+}
+
+/*
+.floating-options .option:hover:before{
+  content: '';
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: #cad4da;
+  border-radius: 100px;
+  z-index: -1;
+  transform: translate(-7px,-5px);
+}
+*/
+
+/****** floating options over *******/
+
+/******** style for editors ********/
+
+.editors{
+  background:#fffdfd;
+  width:100%;
+  height:100%;
+  border-top-left-radius:0px;
+  z-index:0;
+}
+
+.codemirror{
+  overflow:auto;
+  position: absolute;
+  top:2px;
+  left:1%;
+  width: 97%;
+  bottom: 0px;
+  height: 100% !important;
+  border: 1px solid #f9f9f9;
+  box-shadow:#e4e4ec 0px 0px 5px 1px;
+  z-index:0;
+}
+
+/********************/
+/*
+ output css
+******************/
+#out{
+  position:absolute;
+  z-index:1000;
+  top:1%;
+  left:1%;
+  width:98%;
+  height:98%;
+  background:#fbf9f8;
+  border:1px solid #f1dbba;
+  box-sizing: border-box;
+  border-radius:5px;
+}
+
+#out{
+  display:none;
+}
+#out.show{
+  display:block;
+}
+
+#out{
+  display:none;
+}
+#out.show{
+  display:block;
+}
+
+#out .footer.options{
+  height:50px;
+}
+
+#out .footer.options .option-icon{
+  width:20px;
+  height:20px;
 }

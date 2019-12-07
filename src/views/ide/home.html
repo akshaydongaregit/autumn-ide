@@ -12,7 +12,9 @@
         
         <script src="/resources/lib/codemirror/lib/codemirror.js"></script>
         <script src="/resources/lib/codemirror/mode/javascript/javascript.js"></script>
-        
+        <script src="/resources/lib/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="/resources/lib/codemirror/mode/css/css.js"></script>
+
         <script src="/resources/lib/codemirror/addon/selection/active-line.js"></script>
         <script src="/resources/lib/codemirror/addon/edit/matchbrackets.js"></script>
 
@@ -21,10 +23,21 @@
         <div class="header">
             Autumn
         </div>
+        
         <div class="floating-options">
-                <div class="option save"></div>
-                <div class="option run"></div>
+            
+            <div class="options">
+                <div class="option save"> </div>
+                <div class="option run"> </div>
+                <div class="option output" onclick="showOut();"> </div>
             </div>
+            <div class="handle" onclick='document.querySelector(".floating-options").classList.toggle("active");'>
+                    <div id="first"></div>
+                    <div id="second"></div>
+                    <div id="third"></div>
+            </div>
+        </div>
+
         <div class="explorer">
           
             <div class="handle" onclick='document.querySelector(".explorer").classList.toggle("active");'>
@@ -71,6 +84,14 @@ hello();
             <div class="option"> <div class="option-icon project"></div> <label>Project</label> </div>
             <div class="option"> <div class="option-icon options-icn"></div> <label>Options</label> </div>
             <div class="option"> <div class="option-icon share"></div> <label>Share</label> </div>
+        </div>
+
+        <div id="out" class="" >
+            <div class="footer options">
+                    <div class="option"> <div class="option-icon out-share"></div> <label>share</label> </div><div class="option">
+                    <div class="option-icon out-refresh"></div> <label>refresh</label> </div>
+                    <div class="option"> <div class="option-icon out-back" onclick='$("#out").classList.remove("show")'></div> <label>back</label> </div>
+            </div>
         </div>
 
         <script src="/resources/js/home.js"></script>
