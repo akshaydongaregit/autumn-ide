@@ -518,6 +518,42 @@ display: none;
   background-size: cover;
   background-repeat: no-repeat ;
 }
+
+.footer.options .option .sub-options{
+  position:absolute;
+  width:33%;
+  bottom:100%;
+  min-width:max-content;
+  box-shadow:#d3e7ff px 0px 0px 2px;
+  display:none;
+}
+
+.footer.options .option:hover .sub-options{
+  display:block;
+}
+
+.footer.options .option .sub-options .sub-option{
+ width:99%;
+ margin:auto;
+ height:auto;
+ font:normal 100% 'Ubuntu';
+ padding:15px 0px;
+ border-bottom: 1px solid #0c5c7b2b;
+ color:#010c10;
+ border:0p solid #4aa6e6;
+ background:#ffffff;
+ margin-top:0px;
+ user-select: none;
+}
+
+.footer.options .option .sub-options .sub-option:nth-last-child(1){
+  border-bottom:0px solid;
+}
+
+.footer.options .option .sub-options .sub-option:nth-child(1){
+  color:#00a5e4;
+}
+
 /********* footer options ends ***********/
 
 .body{

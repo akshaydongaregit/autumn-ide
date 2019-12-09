@@ -81,19 +81,67 @@ hello();
         </div>
 
         <div class="footer options">
-            <div class="option"> <div class="option-icon project"></div> <label>Project</label> </div>
-            <div class="option"> <div class="option-icon options-icn"></div> <label>Options</label> </div>
-            <div class="option"> <div class="option-icon share"></div> <label>Share</label> </div>
+            <div class="option"> <div class="option-icon project"></div> <label>Project</label> 
+                <div class="sub-options">
+                    <div class="sub-option">
+                        <label>New Project </label>
+                    </div>
+                    <div class="sub-option">
+                        <label>New File</label>
+                    </div>
+                    <div class="sub-option">
+                        <label>Save All</label>
+                    </div>
+                    <div class="sub-option">
+                        <label>Open Project</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="option"> <div class="option-icon options-icn"></div> <label>Options</label> 
+                <div class="sub-options">
+                    <div class="sub-option">
+                         <label>logout</label>
+                    </div>        
+                    <div class="sub-option">
+                        <label>login </label>
+                    </div>
+                    <div class="sub-option">
+                        <label>Join</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="option">
+                 <div class="option-icon share"></div> 
+                 <label>Share</label> 
+                 <div class="sub-options">
+                        <div class="sub-option">
+                            <label>Add </label>
+                        </div>
+                        <div class="sub-option">
+                            <label>Manage</label>
+                        </div>
+                </div>
+            </div>
         </div>
 
         <div id="out" class="" >
             <div class="footer options">
-                    <div class="option"> <div class="option-icon out-share"></div> <label>share</label> </div><div class="option">
+                    <div class="option"> 
+                        <div class="option-icon out-share"></div>
+                        <label>share</label> 
+                    </div>
+                    <div class="option">
                     <div class="option-icon out-refresh"></div> <label>refresh</label> </div>
                     <div class="option"> <div class="option-icon out-back" onclick='$("#out").classList.remove("show")'></div> <label>back</label> </div>
             </div>
         </div>
+        
+        <div id="share-div">
 
+        </div>
+            
         <script src="/resources/js/home.js"></script>
     </body>
 </html>
