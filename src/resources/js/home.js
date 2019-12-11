@@ -1,7 +1,39 @@
+
 let $ = (exp) => document.querySelector(exp);
 let $$ = (exp) => document.querySelectorAll(exp);
 
-$$('.explorer .node label').forEach( el => {
+    let showOut = ()=>{
+        $('#out').classList.add("show");
+    }
+
+    let menu = {};
+    
+let init = () => {
+        axios.post('/repo/repostree',{}).then((res)=>{
+            console.log('res:'+JSON.stringify(res.data));    
+            initSideExplorer(res.data);
+        }).catch((err)=>{
+            console.log('err :'+err);
+        });
+    }
+
+    let initSideExplorer = (dirTree) => {
+
+        var nodes = dirTree.children;
+        let html = '';
+
+        nodes.forEach( node => {
+            html+= renderNode(node);
+        });
+        
+        $('.explorer .nodes').innerHTML = html;
+
+        addSideExplorerClicks();
+
+}
+
+let addSideExplorerClicks = () => {
+    $$('.explorer .node label').forEach( el => {
         el.addEventListener( 'click' , () => { 
             el.parentElement.classList.toggle("fold");
         });
@@ -25,7 +57,30 @@ $$('.explorer .node label').forEach( el => {
             console.log('err :'+err);
         });
     }
+}
 
-    let showOut = ()=>{
-        $('#out').classList.add("show");
+let renderNode = (node) => {
+    let type = node.type;
+    let name = node.name;
+    let html = '';
+
+    if(type == 'file'){
+        html += `<div class="node">
+            <label class="`+type+`">`+name+`</label>
+        </div>`;
+
+    }else if(type == 'folder' ) {
+        html = `<div class="node">
+                    <label class="`+type+`">`+name+`</label>`;
+
+        node.children.forEach( node => {
+            html+= renderNode(node);
+        });
+        
+        html+= `</div>`;
+
     }
+    console.log(html);
+
+    return html;
+}

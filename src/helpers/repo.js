@@ -1,4 +1,5 @@
 let fs = require('fs');
+let path = require('path');
 
 exports.save = (data) =>{
     console.log('data'+JSON.stringify(data));
@@ -10,7 +11,7 @@ exports.save = (data) =>{
     });
 };
 
-exports.dirTree = (filename) => {
+const dirTree = (filename) => {
     var stats = fs.lstatSync(filename),
         info = {
             path: filename,
@@ -30,3 +31,10 @@ exports.dirTree = (filename) => {
 
     return info;
 };
+
+exports.dirTreeByLogin = (login) => {
+    console.log(dirTree(global.root + '/repos/'+login ));
+    return dirTree(global.root + '/repos/'+login );
+}
+
+exports.dirTree = dirTree;
