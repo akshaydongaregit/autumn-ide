@@ -729,3 +729,11 @@ display: none;
   width:20px;
   height:20px;
 }
+#out .out-frame{
+  position:absolute;
+  top:0px;
+  left:0px;
+  bottom:50px;
+  right:0px;
+  overflow:auto;
+}
