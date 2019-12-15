@@ -27,9 +27,9 @@
         <div class="floating-options">
             
             <div class="options">
-                <div class="option save"> </div>
-                <div class="option run"> </div>
-                <div class="option output" onclick="showOut();"> </div>
+                <div class="option save" onclick="floatingOptions.saveCurrent();"> </div>
+                <div class="option run" onclick="floatingOptions.runFile();"> </div>
+                <div class="option output" onclick="floatingOptions.showOut();"> </div>
             </div>
             <div class="handle" onclick='document.querySelector(".floating-options").classList.toggle("active");'>
                     <div id="first"></div>
@@ -47,22 +47,10 @@
             </div>
 
             <div class="nodes">
-                <div class="node">
-                    <label class="folder">hello</label>
-                    <div class="node">
-                        <label class="folder">css</label>
-                        <div class="node">
-                                <label class="file">main.css</label>
-                            </div>
-                    </div>
-                    <div class="node">
-                        <label class="file">main.js</label>
-                    </div>
-                    <div class="node">
-                        <label class="file">index.js</label>
-                    </div>
-                </div>
+            
+            
             </div>
+
         </div>
         <div class="body">
             
@@ -85,6 +73,9 @@ hello();
                 <div class="sub-options">
                     <div class="sub-option">
                         <label>New Project </label>
+                    </div>
+                    <div class="sub-option">
+                        <label>New Folder</label>
                     </div>
                     <div class="sub-option">
                         <label>New File</label>
@@ -147,8 +138,8 @@ hello();
 
         </div>
             
-        <script src="/resources/js/home.js"></script>
         <script src="/resources/lib/axios.js"></script>
+        <script src="/resources/js/home.js"></script>
         <script>
             init();
         </script>

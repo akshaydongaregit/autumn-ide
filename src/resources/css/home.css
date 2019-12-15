@@ -46,9 +46,7 @@ background:#208eef;
   box-shadow:#eaeef3 0px 0px 10px 2px;
   border:2px solid #f1f1f5;
 }
-.explorer .nodes .node:nth-child(1){
-margin-top:70px;
-}
+.explorer .nodes .footer-options:nth-child(1){margin-top:60px;}
 .explorer.active .nodes{
   left:0%;
   transition:200ms cubic-bezier(0, 0, 0.65, 0.79);
@@ -736,4 +734,33 @@ display: none;
   bottom:50px;
   right:0px;
   overflow:auto;
+}
+.explorer .nodes{
+  max-width:110px;
+}
+
+.explorer .nodes .footer-options{
+  background:#f1f1f1;
+  height:30px;
+  width:103%;
+}
+
+.explorer .nodes .footer-options .option{
+  width:32px;
+  height:30px;
+  background-color:#f8f8f8;
+  padding:5px;
+  margin:0px 0px 0px 0px;
+  display:inline-flex;
+  box-sizing:border-box;
+}
+.explorer .nodes .footer-options .option:nth-child(1){
+  margin-left:8px;
+}
+
+.explorer .nodes .footer-options .option .option-icon{
+  width:20px;
+  height:20px;
+  background-size: cover;
+  background-repeat:no-repeat;
 }

@@ -3,13 +3,19 @@ let path = require('path');
 
 exports.save = (data) =>{
     console.log('data'+JSON.stringify(data));
-    fs.writeFile('../../repos/'+data.file , data.content , (err) => {
-        if(err)    
+    fs.writeFile(global.root + '/repos/'+data.filename , data.content , (err) => {
+        console.log('err '+err);
+        if(err!=null)    
             return {result:'err:'+err};
         else 
             return {result:'sucess'};
     });
 };
+exports.get = (data) => {
+    let filename = data.filename;
+    console.log();
+    res.send();
+}
 
 const dirTree = (filename) => {
     var stats = fs.lstatSync(filename),
