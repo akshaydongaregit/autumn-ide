@@ -27,10 +27,17 @@
         <div class="floating-options active">
             
             <div class="options">
-                <div class="option save" onclick="floatingOptions.saveCurrent();"> </div>
-                <div class="option run" onclick="floatingOptions.runFile();"> </div>
-                <div class="option output" onclick="floatingOptions.showOut();"> </div>
+                <div class="option" onclick="floatingOptions.saveCurrent();">
+                    <div class="option-icon save"></div> save 
+                </div>
+                <div class="option" onclick="floatingOptions.runFile();"> 
+                    <div class="option-icon run"></div> run
+                </div>
+                <div class="option" onclick="floatingOptions.showOut();">
+                    <div class="option-icon output"></div> output
+                </div>
             </div>
+            
             <div class="handle" onclick='document.querySelector(".floating-options").classList.toggle("active");'>
                     <div id="first"></div>
                     <div id="second"></div>
