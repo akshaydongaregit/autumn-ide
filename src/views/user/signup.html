@@ -10,44 +10,49 @@
 		<!-- form -->
 		<div class="form">
                 <div class="form-header">
-                    <div class="title"> Join Us </div>
-                    <div class="desc"></div>
+                    <div class="title"> Join Autumn </div>
+                    <div class="desc">We are best Online code learning platform for freshers</div>
                 </div>
                 <div class="form-body">
                     <div class="element">
                         <div class="label"> Full Name </div>
                         <div class="control">
-                            <input type="text" class="textbox"/>
+                            <input type="text" id="name" class="textbox"/>
                         </div>
                     </div>
                     <div class="element">
                         <div class="label"> E-Mail </div>
                         <div class="control">
-                            <input type="text" class="textbox"/>
+                            <input type="text" id="email" class="textbox"/>
                         </div>
                     </div>
                     <div class="element">
                         <div class="label"> User Name </div>
                         <div class="control">
-                            <input type="text" class="textbox"/>
+                            <input type="text" id="username" class="textbox"/>
                         </div>
                     </div>
                     <div class="element">
                         <div class="label"> Password </div>
                         <div class="control">
-                            <input type="text" class="textbox"/>
+                            <input type="password" id="pswd" class="textbox"/>
                         </div>
                     </div>
                     <div class="element">
                         <div class="control">
-                            <input type="submit" value="Submit & Join" class="button"/>
+                            <input type="submit" value="Submit & Join" class="button" onclick="signup()"/>
                         </div>
                         <div class="control">
-                            <input type="submit" value="Allready a Member" class="button"/>
+                            <input type="submit" value="Allready a Member" class="button" onclick="document.location='/public/login'" />
                         </div>
                     </div>
                 </div>
                 <div class="form-footer"></div>
-            </div>    
+            </div>
+            
+            
+            <script src="/resources/js/util.js"></script>
+            <script src="/resources/js/login.js"></script> 
+            <script src="/resources/lib/axios.js"></script>
     </body>
 </html>

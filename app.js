@@ -22,5 +22,10 @@ app.use(require('./src/middlewares/repos/renderer/renderer')());
 app.use('/ide',require('./src/routers/ide'));
 app.use('/repo',require('./src/routers/repo'));
 app.use('/user' , require('./src/routers/user') );
+app.use('/public' , require('./src/routers/public') );
+
+app.get('/',(req,res)=>{
+    res.render('index');
+});
 
 server.listen(port,() => console.log('Server started on port '+port) );

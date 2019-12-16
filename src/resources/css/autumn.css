@@ -36,6 +36,13 @@
   color:#26c2ef;
   font:bold 110% 'Ubuntu' , sans-serif;
 }
+.form .form-header .desc{
+  font:normal 80% 'Ubuntu';
+  margin-top:10px;
+  text-align:center;
+  margin-bottom:10px;
+  color:#949da9;
+}
 
 .form-body{
   margin-top:5px;
@@ -55,6 +62,11 @@
   height:35px;
   /*! box-sizing:border-box; */
 }
+.form .element.footer{
+  display:block;
+  width:max-content;
+}
+
 /*.form .element:nth-child(1) .textbox{*/
  .form *:focus{
   outline:none;
@@ -70,8 +82,12 @@
   color:#26c2ef;
   width:100%;
   margin:auto;
-  display: inline-grid;
+  display:block;
 } 
+.form .element .button+.button{
+ display:inline-block;
+}
+
 .form .element{
   display:inline-grid;
 }
@@ -81,4 +97,138 @@
 
 .form .element:nth-last-child(1){
   margin-bottom:10px;
+}
+
+/*  loader */
+@keyframes spinner{
+  0%{ transform:rotate(-36deg); }
+  10%{ transform:rotate(-72deg); }
+  20%{ transform:rotate(-108deg); }
+  30%{ transform:rotate(-144deg); }
+  40%{ transform:rotate(-180eg); }
+  50%{ transform:rotate(-216deg); }
+  60%{ transform:rotate(-252deg); }
+  70%{ transform:rotate(-288deg); }
+  80%{ transform:rotate(-324deg); }
+  90%{ transform:rotate(-360deg); }
+  100%{ transform:rotate(-396deg); }
+ }
+ .spinner{
+   display:none;
+   position:absolute;
+   top:50%;
+   left:50%;
+   transform:translate(-50%,-50%);
+   -moz-transform:translate(-50%,-50%);
+   width:50px;
+   height:50px;
+   background-color:#c3a4c300;
+   border-radius:200px;
+ }
+ .spinner.show {
+   display:block;
+   transition:5s ease-in-out;
+   z-index: 9999;
+ }
+ .spinner.show::afte {
+   content: '';
+   position: absolute;
+   top: 50%;
+   right: 50%;
+   bottom: 50%;
+   left: 50%;
+   background-color:#f9f8f912;
+   border-radius: 200px;
+   box-shadow:0px 0px 600px 60px #9f9fc7;
+ }
+ .spinner.show::before{
+   content:'';
+   position:absolute;
+   top:0%;
+   left:0%;
+   width:100%;
+   height:100%;
+   background-color:#ffffff00;
+   border-radius:50%;
+   border-right:8px solid #ff7600;
+   border-top:8px solid #ffb000;
+   border-bottom:8px solid #ff0000;
+   box-sizing:border-box;
+   clip:rect(0px,100px,100px,20px);
+   animation:spinner 1s infinite;
+   z-index:1;
+ }
+ 
+/*card*/
+.body{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.card{
+  display:block;
+  width:max-content;
+  height:auto;
+  padding:20px;
+  background-color:#fafcff;
+  border-radius:10px;
+  font:normal 90% 'Ubuntu';
+  box-sizing:content-box;
+  box-shadow:#dfe5e8 0px 0px 10px 2px;
+  border:2px solid #dee5ea;
+}
+
+.card .header{
+  margin-top:10px;
+  width:auto;
+  text-align:center;
+  font:normal 100% 'Ubuntu';
+  color:#109fe0;
+}
+.card .subject {
+  text-align:center;
+  font:bold 110% 'Ubuntu';
+  margin:15px auto 0px auto;
+  color:#109fe3;
+}
+.card .body{
+  margin-top:15px;
+  font:normal 80% 'Ubuntu';
+  /* margin-left:20px; */
+  text-align:center;
+  color:#73808a;
+}
+.card .body label{
+  display:block;
+  margin:10px 0px 10px 0px;
+}
+
+.card .button{
+  text-align:center;
+  background-color:#ecf6ff;
+  border-radius:5px;
+  border:1px solid #109fe3;
+  padding:10px;
+  display:block;
+  width:80%;
+  margin-top:15px;
+  color:#0d98e6;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  font:normal 100% 'Ubuntu';
+}
+.card .button:nth-of-type(1){
+  margin-top:30px;
+}
+.card .button+.button{
+  background-color:#10abea;
+  color:white;
+}
+
+.card.autumn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%)
 }

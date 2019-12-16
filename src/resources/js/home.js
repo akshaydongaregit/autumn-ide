@@ -1,6 +1,7 @@
-
-let $ = (exp) => document.querySelector(exp);
-let $$ = (exp) => document.querySelectorAll(exp);
+if($==undefined)
+    var $ = (exp) => document.querySelector(exp); 
+if($$==undefined)
+    var $$ = (exp) => document.querySelectorAll(exp);
 
 let menu = {};
     
@@ -20,9 +21,10 @@ let init = () => {
         let optionsHtml = `
         <div class="footer-options">
         <div class="options">
-            <div class="option" > <div class="option-icon add-file"> </div> </div>
-            <div class="option" > <div class="option-icon delete-file"> </div> </div>
-            <div class="option" onclick="showOut();">  <div class="option-icon rename-file"></div> </div>
+            <div class="option" onclick="options.addFolder();">  <div class="option-icon add-folder"></div> </div>
+            <div class="option" onclick="options.addFile()"> <div class="option-icon add-file" > </div> </div>
+            <div class="option" onclick="options.delete()"> <div class="option-icon delete-file" > </div> </div>
+            <div class="option" onclick="options.rename()">  <div class="option-icon rename-file" ></div> </div>
         </div>
     </div>
     `;
@@ -110,10 +112,16 @@ files.editor = {
             mode: mode
         });
         files.editor.current = editor;
+        
+        //stop loading
+        loading($('.body'));
+
     }
 };
 
 files.edit = (file) => {
+
+    loading($('.body'), true);
 
     let path = file.getAttribute('path') ;
     console.log(path);

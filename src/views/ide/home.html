@@ -3,6 +3,7 @@
         <title>Autumn | Home </title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/resources/css/autumn.css"/>
         <link rel="stylesheet" href="/resources/css/home.css"/>
         <link rel="stylesheet" href="/resources/css/icons.css"/>
 
@@ -54,8 +55,7 @@
             </div>
 
             <div class="nodes">
-            
-            
+        
             </div>
 
         </div>
@@ -91,13 +91,13 @@
             </div>
             <div class="option"> <div class="option-icon options-icn"></div> <label>Options</label> 
                 <div class="sub-options">
-                    <div class="sub-option">
+                    <div class="sub-option" onclick="document.location='/user/logout'">
                          <label>logout</label>
                     </div>        
-                    <div class="sub-option">
+                    <div class="sub-option" onclick="document.location='/public/login'">
                         <label>login </label>
                     </div>
-                    <div class="sub-option">
+                    <div class="sub-option" onclick="document.location='/public/signup'">
                         <label>Join</label>
                     </div>
 
@@ -137,8 +137,10 @@
         <div id="share-div">
 
         </div>
-            
+        
+        
         <script src="/resources/lib/axios.js"></script>
+        <script src="/resources/js/util.js"></script>
         <script src="/resources/js/home.js"></script>
         <script>
             init();

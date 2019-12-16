@@ -11,5 +11,14 @@ router.post('/login',(req,res)=>{
     res.send(isAuth);
 });
 
+router.post('/add',(req,res)=>{
+    let data = req.body;
+    res.send(auth.add(data));
+});
+
+router.get('/logout',(req,res)=>{
+    req.session.login = undefined;
+    res.redirect('/');
+});
 
 module.exports = router;
