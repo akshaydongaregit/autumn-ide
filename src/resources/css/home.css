@@ -303,7 +303,9 @@ display: none;
   border-top-left-radius:0px;
   z-index:0;
 }
-
+#code {
+  display:none;
+}
 .codemirror{
   overflow:auto;
   position: absolute;
