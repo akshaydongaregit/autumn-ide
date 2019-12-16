@@ -303,9 +303,6 @@ display: none;
   border-top-left-radius:0px;
   z-index:0;
 }
-#code {
- display:none;
-}
 
 .codemirror{
   overflow:auto;
@@ -594,21 +591,31 @@ display: none;
   border-right:none;
   display: none;
 }
-
 .floating-options.active .options{
   display: flex;
 }
 
 .floating-options .option{
-  width:30px;
-  height:30px;
+  min-width: 30px;
+  height:36px;
   margin: auto;
-  margin-right:5px ;
+  margin-right:5px;
   margin-top:5px;
   margin-bottom:5px;
   background-size:cover;
   background-repeat:no-repeat;
   z-index:96;
+  font:normal 70% 'Ubuntu';
+  color:#222425;
+  width: fit-content;
+}
+
+
+.floating-options .option .option-icon{
+  width:25px;
+  height:25px;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
 .floating-options .option:first-of-type{
@@ -616,7 +623,7 @@ display: none;
 }
 .floating-options .handle{
   width:35px;
-  height: 40px;
+  height: 46px;
   background: #ffffff;
   border:1px solid #00a5e4;
   /*border-left:none;*/
@@ -772,4 +779,3 @@ display: none;
   background-size: cover;
   background-repeat:no-repeat;
 }
-
