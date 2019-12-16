@@ -303,6 +303,9 @@ display: none;
   border-top-left-radius:0px;
   z-index:0;
 }
+#code {
+ display:none;
+}
 
 .codemirror{
   overflow:auto;
@@ -769,3 +772,4 @@ display: none;
   background-size: cover;
   background-repeat:no-repeat;
 }
+
