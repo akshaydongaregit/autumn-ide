@@ -137,6 +137,9 @@ files.editor = {
         else
             mode = 'javascript';
         console.log('mode'+mode);
+        if(files.editor.current!=undefined)
+            files.editor.current.toTextArea();
+
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             styleActiveLine: true,
