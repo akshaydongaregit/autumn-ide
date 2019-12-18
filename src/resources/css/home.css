@@ -40,7 +40,8 @@ background:#208eef;
   left:-50%;
   margin:0px;
   width:40%;
-  height:100vh;
+  /*height:100vh;*/
+bottom:0px;
   background:#fdfdfd;
   color:#32373c;
   box-shadow:#eaeef3 0px 0px 10px 2px;
