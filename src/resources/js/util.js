@@ -29,23 +29,24 @@ $.dailog = ( el , config) => {
         `+config.body+`
         </div>
         <div class="dailog-footer">
-            <button id="submit" class="success" >Submit</button>
-            <button id="cancel" class="danger" >Cancel</button>
+            <button id="submit" class="success" > ` + (config.submitText !=undefined ? config.submitText : `Submit`) + ` </button>
+            <button id="cancel" class="danger" > ` + (config.cancelText !=undefined ? config.cancelText : `Cancel`) + `</button>
         </div>
     </div>` ;
     let dailogNode = new DOMParser().parseFromString(html,'text/html').documentElement ;
     
-    if(config.onSubmit!=undefined){
+    
         dailogNode.querySelector('#submit').addEventListener( 'click' , () => { 
             el.removeChild(dailogNode);
-            config.onSubmit(dailogNode); });
-    }
-    if(config.onCancel!=undefined){
+            if(config.onSubmit!=undefined)
+                config.onSubmit(dailogNode); });
+    
         dailogNode.querySelector('#cancel').addEventListener ( 'click' , () => {
                 el.removeChild(dailogNode);
-                config.onCancel(dailogNode) 
+                if(config.onCancel!=undefined)
+                    config.onCancel(dailogNode) 
             })  ;
-    }
+    
     el.appendChild( dailogNode );
 
 };

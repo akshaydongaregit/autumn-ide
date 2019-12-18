@@ -25,6 +25,14 @@ router.post('/deleteFile',(req,res)=>{
     console.log('router '+data);
     res.send(repo.delete(data));
 });
+router.post('/renameFile',(req,res)=>{
+    let data = req.body;
+    let username = req.session.login;
+    data.name = username+'/'+data.name;
+    data.newName = username+'/'+data.newName;
+    console.log('router '+data);
+    res.send(repo.rename(data));
+});
 
 router.post('/repostree',(req,res)=>{
     let data = req.body;

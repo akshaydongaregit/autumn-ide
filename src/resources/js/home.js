@@ -73,17 +73,18 @@ let addSideExplorerClicks = () => {
 let renderNode = (node) => {
     let type = node.type;
     let path = node.path;
-    path = path.substr(path.indexOf('/repos/')+7)
+    path = path.substr(path.indexOf('/repos/')+7);
+    console.log(' path : '+ path + '  , ' + node.path );
     let name = node.name;
     let html = '';
 
     if(type == 'file'){
-        html += `<div class="node" path = `+path+` onclick="files.edit(this)">
+        html += `<div class="node" path = "`+path+`" onclick="files.edit(this)" type="file">
             <label class="`+type+`"  >`+name+`</label>
         </div>`;
 
     }else if(type == 'folder' ) {
-        html = `<div class="node" path = `+path+`>
+        html = `<div class="node" path = "`+path+`" type="folder">
                     <label class="`+type+`">`+name+`</label>`;
 
         node.children.forEach( node => {
@@ -249,3 +250,98 @@ let floatingOptions =  {
 
 };
 
+let options = {
+    add : (type) => {
+        $.dailog($('.body') , {
+            title : 'Add ' + type,
+            subject : '' ,
+            body : `
+            <label>Enter `+type+` Name : </label> <br/>
+            <input type="text" class="text" id="name" />
+            ` ,
+            submitText : 'add' ,
+            cancelText : 'close' ,
+            onSubmit : (dailog) => {
+                let name = $.$( dailog , '#name').value;
+                console.log(' name : '+ name);
+                let selectedpath = files.explorer.selected.parentElement.getAttribute('path');
+                if(files.explorer.selected.parentElement.getAttribute('type')=='file')
+                selectedpath = selectedpath.substr(0 , selectedpath.lastIndexOf('/'));
+
+                let path = selectedpath.substring(selectedpath.indexOf('/')+1) + '/' + name;
+                console.log(path);
+
+                axios.post('/repo/newFile',{name:path , type:type}).then((res)=>{
+                    console.log('res:'+JSON.stringify(res));
+                    files.refreshExplorer();
+                }).catch((err)=>{
+                    console.log('err :'+err);
+                });
+            }
+        });
+    } ,
+    delete : () => {
+        
+        let path = files.explorer.selected.parentElement.getAttribute('path');
+        path = path.substring(path.indexOf('/')+1) ;
+        let type = files.explorer.selected.parentElement.getAttribute('type');
+
+        $.dailog($('.body') , {
+            title : 'Delete ' + type,
+            subject : '' ,
+            body : `
+            <label>Confirm to delete `+type+` `+path+` : </label> <br/>
+            ` ,
+            submitText : 'Delete' ,
+            cancelText : 'Cancel' ,
+            onSubmit : (dailog) => {
+
+                console.log(path);
+
+                axios.post('/repo/deleteFile',{name:path , type:type}).then((res)=>{
+                    console.log('res:'+JSON.stringify(res));
+                    files.refreshExplorer();
+                }).catch((err)=>{
+                    console.log('err :'+err);
+                });
+            }
+        });
+    } ,
+    addFolder : () => {
+        options.add('folder');
+    }  ,
+    addFile : () => {
+        options.add('file');
+    }  ,
+    rename : () => {
+        let path = files.explorer.selected.parentElement.getAttribute('path');
+        path = path.substring(path.indexOf('/')+1) ;
+        let folder = path.substr(0 , path.lastIndexOf('/'));; 
+        let type = files.explorer.selected.parentElement.getAttribute('type');
+
+        $.dailog($('.body') , {
+            title : 'Rename ' + type,
+            subject : '' ,
+            body : `
+            <label>Enter new `+type+` Name : </label> <br/>
+            <input type="text" class="text" id="name" />
+            ` ,
+            submitText : 'Rename' ,
+            cancelText : 'Cancel' ,
+            onSubmit : (dailog) => {
+
+                let name = $.$( dailog , '#name').value;
+                console.log(' name : '+ name);
+                let newPath = folder + '/' + name;
+                console.log(path+ ' , ' + newPath);
+
+                axios.post('/repo/renameFile',{name:path , type:type , newName : newPath}).then((res)=>{
+                    console.log('res:'+JSON.stringify(res));
+                    files.refreshExplorer();
+                }).catch((err)=>{
+                    console.log('err :'+err);
+                });
+            }
+        });
+    } 
+};
