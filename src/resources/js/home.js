@@ -6,13 +6,16 @@ if($$==undefined)
 let menu = {};
     
 let init = () => {
+    $.loading($('.body'), true);
         axios.post('/repo/repostree',{}).then((res)=>{
             console.log('res:'+JSON.stringify(res.data));    
             initSideExplorer(res.data);
         }).catch((err)=>{
             console.log('err :'+err);
         });
-    }
+    $.loading($('.body'));
+    
+}
 
     let initSideExplorer = (dirTree) => {
 
@@ -128,6 +131,9 @@ files.editor = {
     unsaved : new Map() , 
     open : (path , content) => {
 
+        if(files.editor.current!=undefined)
+            files.editor.current.toTextArea();
+
         files.editor.currentFile = path;
         $('#code').innerHTML = ''+content+'';
         let mode = '';
@@ -138,26 +144,26 @@ files.editor = {
         else
             mode = 'javascript';
         console.log('mode'+mode);
-        if(files.editor.current!=undefined)
-            files.editor.current.toTextArea();
-
+        
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             styleActiveLine: true,
             matchBrackets: true,
             mode: mode
         });
+        editor.getDoc().setValue(content);
+
         files.editor.current = editor;
         
         //stop loading
-        loading($('.body'));
+        $.loading($('.body'));
 
     }
 };
 
 files.edit = (file) => {
 
-    loading($('.body'), true);
+    $.loading($('.body'), true);
 
     let path = file.getAttribute('path') ;
     console.log(path);
@@ -218,6 +224,8 @@ files.newProject = () => {
 
 let floatingOptions =  {
  saveCurrent : () => {
+    $.loading($('.body'), true);
+    try {
      let data = {
             filename : files.editor.currentFile,
             content : files.editor.current.getValue()
@@ -228,9 +236,14 @@ let floatingOptions =  {
         if(res.data!=undefined){
             console.log(res);
         }
+        $.loading($('.body'));
     }).catch((err)=>{
+        $.loading($('.body'));
         console.log('err :'+err);
     });
+    }catch(err){
+        $.loading($('.body'));
+    }
  } ,
 
  runFile : () => {

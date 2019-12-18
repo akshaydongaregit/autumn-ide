@@ -8,7 +8,7 @@ if(_$==undefined)
 $.$ = (el,exp) => el.querySelector(exp); 
 $.$$ = (el,exp) => el.querySelectorAll(exp);
 
-let loading = (el , action) => {
+$.loading = (el , action) => {
     
     if(el.querySelector('div.spinner')!=undefined)
             el.removeChild(el.querySelector('div.spinner'));

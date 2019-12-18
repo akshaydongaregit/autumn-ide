@@ -1,7 +1,7 @@
 
 let login = () =>{
 
-    loading($('body'),true);
+    $.loading($('body'),true);
 
     let data = {
         username : $('#username').value ,
@@ -11,19 +11,19 @@ let login = () =>{
     axios.post('/user/login',data).then((res)=>{
         console.log('res:'+JSON.stringify(res));
         if(res.data == true ){
-            loading($('body'));
+            $.loading($('body'));
             document.location = '/ide/home';
         }
-        loading($('body'));
+        $.loading($('body'));
     }).catch((err)=>{
-        loading($('body'));
+        $.loading($('body'));
         console.log('err :'+err);
     });
 }
 
 let signup = () =>{
 
-    loading($('body'),true);
+    $.loading($('body'),true);
 
     let data = {
         name : $('#name').value,
@@ -35,12 +35,12 @@ let signup = () =>{
     axios.post('/user/add',data).then((res)=>{
         console.log('res:'+JSON.stringify(res));
         if(res.data.success == true ){
-            loading($('body'));
+            $.loading($('body'));
             document.location = '/public/login';
         }
-        loading($('body'));
+        $.loading($('body'));
     }).catch((err)=>{
-        loading($('body'));
+        $.loading($('body'));
         console.log('err :'+err);
     });
 }
