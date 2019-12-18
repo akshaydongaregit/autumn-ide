@@ -35,13 +35,12 @@ z-index:99;
 background:#208eef;
 }
 .explorer .nodes{
-  position:fixed;
+  position:absolute;
   top:0px;
   left:-50%;
   margin:0px;
   width:40%;
-  /*height:100vh;*/
-bottom:0px;
+  height:100vh;
   background:#fdfdfd;
   color:#32373c;
   box-shadow:#eaeef3 0px 0px 10px 2px;
@@ -198,7 +197,7 @@ display: none;
   position:absolute;
   top:25px;
   left:0px;
-  bottom:72px;
+  bottom: 65px;
   right:0px;
   overflow:auto;
 }
@@ -577,7 +576,7 @@ display: none;
   position:absolute;
   top:25px;
   left:0px;
-  bottom:65px;
+  /* bottom:65px; */
   right:0px;
   overflow:auto;
 }
