@@ -34,7 +34,7 @@ let signup = () =>{
 
     axios.post('/user/add',data).then((res)=>{
         console.log('res:'+JSON.stringify(res));
-        if(res.data == true ){
+        if(res.data.success == true ){
             loading($('body'));
             document.location = '/public/login';
         }

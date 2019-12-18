@@ -73,6 +73,10 @@ display: none;
 .explorer .node label:hover{
   color: #2f86ff;
 }
+.explorer .node .selected {
+  color:#0f76d0;
+ }
+ 
 .explorer .handle div{
   margin: 0px;
   border-radius: 100px;
@@ -382,8 +386,9 @@ z-index:99;
   box-shadow:#eaeef3 0px 0px 10px 2px;
   border:2px solid #f1f1f5;
 }
-.explorer .nodes .node:nth-child(1){
-margin-top:70px;
+.explorer .nodes .node:nth-child(1){/* margin-top:70px; */}
+.explorer .nodes .nodes-wrapper{
+  margin-top:5px;
 }
 .explorer.active .nodes{
   left:0%;
@@ -786,4 +791,20 @@ display: none;
   height:20px;
   background-size: cover;
   background-repeat:no-repeat;
+}
+.explorer .nodes .bottom-options{
+  position:absolute;
+  bottom:35px;
+  height:max-content;
+  width:100%;
+  padding:10px;
+}
+.explorer .nodes .new-project{
+  background:#ffa626;
+  position:absolute;
+  padding:5px 10px 5px 10px;
+  border-radius:2px;
+  border:2px solid #ffa45e;
+  color:#271503;
+  min-width:70%;
 }

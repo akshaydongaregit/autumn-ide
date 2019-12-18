@@ -8,7 +8,7 @@
   src: url("../fonts/Ubuntu-Bold.ttf");
   font-weight: bold;
 }
-*{
+{
   font-family: 'Ubuntu';
 }
 
@@ -231,4 +231,92 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%)
+}
+
+/*
+ dailog box css
+*/
+.dailog{
+  width:max-content;
+  height:max-content;
+  background-color:#ffffff;
+  position:absolute;
+  top:50%;
+  left:50%;
+  padding:2%;
+  transform:translate(-50%,-50%);  
+  border:1px solid #d7d8d8;
+  border-radius:5px ;
+  box-shadow:#e3e4e4 2px 2px 12px 2px;
+  z-index:102;
+}
+
+.dailog .dailog-title{
+  margin:2px 0px 10px 0px;
+  font:bold 90% 'Ubuntu';
+  padding:0px 0px 8px 0px;
+  border-bottom:1px solid #ebeff1;
+  color:#525456;
+  border-bottom-radius:2px;
+}
+.dailog .dailog-body {
+  margin:0px 0px 10px 0px;
+  font:normal 90% 'Ubuntu';
+  padding:5px 5px 5px 5px;
+  border-bottom:0px solid #a3a9b3;
+  color:#525456;
+}
+.dailog .dailog-body label{
+  height:max-content;
+  margin-top:5px;
+}
+
+.dailog .dailog-body input{
+  border:1px solid #c4c7c7;
+  border-radius:3px;
+  height:25px;
+  margin-top:5px;
+  color:#727679;
+  box-sizing:border-box;
+  padding:4px;
+}
+.dailog .dailog-body input:focus{
+  outline:none;
+  box-shadow:#0a90f3 0px 0px 2px 1px;
+  border:none;
+}
+.dailog .dailog-footer{
+  text-align:center;
+  font:bold 80% 'Ubuntu';
+}
+.dailog button{
+  width:max-content;
+  height:max-content;
+  box-sizing:border-box;
+  padding:4px 10px 4px 10px;
+  margin:2px;
+  font:normal 100% 'Ubuntu';
+  color:#3a3c35;
+  background-color:#00a5e4;
+  border-radius:2px;
+  border:1px solid #07b1f3;
+}
+.dailog button.danger{
+  background-color:#ffbaad;
+  border:1px solid #ff6605;
+}
+
+.dailog button.success{
+  background-color:#8cffa6;
+  border:1px solid #30c721;
+}
+
+.dailog button.warn{
+  background-color:#fffd94;
+  border:1px solid #9ca533;
+}
+
+.dailog button.inactive{
+  background-color:#ececec;
+  border:1px solid #636667;
 }

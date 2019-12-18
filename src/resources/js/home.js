@@ -17,7 +17,6 @@ let init = () => {
     let initSideExplorer = (dirTree) => {
 
         var nodes = dirTree.children;
-        let html = '';
         let optionsHtml = `
         <div class="footer-options">
         <div class="options">
@@ -28,21 +27,32 @@ let init = () => {
         </div>
     </div>
     `;
+        let bottomOptions = `
+            <div class="bottom-options">
+                <button class="new-project" onclick="files.newProject()">New Project</button>
+            </div>
+        `;
+        let html = '<div class="nodes-wrapper">' +
+        explorerHtml(nodes) + '</div>';
 
-        nodes.forEach( node => {
-            html+= renderNode(node);
-        });
-        
-        $('.explorer .nodes').innerHTML = optionsHtml+html;
+        $('.explorer .nodes').innerHTML = optionsHtml + html +   bottomOptions;
 
         addSideExplorerClicks();
 
 }
+let explorerHtml = (nodes)=> {
+    let html = '';
+    nodes.forEach( node => {
+        html+= renderNode(node);
+    });
+    return html;
+};
 
 let addSideExplorerClicks = () => {
     $$('.explorer .node label').forEach( el => {
         el.addEventListener( 'click' , () => { 
             el.parentElement.classList.toggle("fold");
+            files.explorer.select(el);
         });
     });
 
@@ -89,6 +99,28 @@ let renderNode = (node) => {
 }
 
 let files = {};
+files.explorer = {
+    selected : undefined,
+    select : (el) => {
+        if(files.explorer.selected!=undefined){
+            files.explorer.selected.classList.remove('selected');
+        }
+        files.explorer.selected = el;
+        files.explorer.selected.classList.add('selected');
+    }
+};
+
+files.refreshExplorer = () => {
+    axios.post('/repo/repostree',{}).then((res)=>{
+        console.log('res:'+JSON.stringify(res.data));    
+        let html = explorerHtml(res.data.children);
+        $('.explorer .nodes .nodes-wrapper').innerHTML = html;
+        addSideExplorerClicks(); 
+    }).catch((err)=>{
+        console.log('err :'+err);
+    });
+};
+
 files.editor = {
     currentFile : undefined ,
     current : undefined , 
@@ -152,6 +184,33 @@ files.edit = (file) => {
     });
 
 };
+
+files.newFolder = () => {
+
+}
+
+files.newProject = () => {
+    console.log('creating new project');
+    $.dailog($('.body') , {
+        title : 'Create New Project' ,
+        subject : '' ,
+        body : `
+        <label>Enter Project Name : </label> <br/>
+        <input type="text" class="text" id="proj" />
+        ` ,
+        onSubmit : (dailog) => {
+            let proj = $.$( dailog , '#proj').value;
+            console.log(' proj name : '+ proj);
+
+            axios.post('/repo/newFile',{name:proj , type:'folder'}).then((res)=>{
+                console.log('res:'+JSON.stringify(res));
+                files.refreshExplorer();
+            }).catch((err)=>{
+                console.log('err :'+err);
+            });
+        }
+    });
+}
 
 let floatingOptions =  {
  saveCurrent : () => {

@@ -1,3 +1,4 @@
+let repo = require('./repo')
 
 let users = new Map();
 users.set('ak' , {name:'akshay' , email:'ak@gmail.com' , username:'ak' , pswd : '123' });
@@ -17,6 +18,18 @@ exports.userOfLogin = (login) => {
 };
 
 exports.add = (user) => {
-    users.set(user.username , user);
-    return true;
+    let result = {
+        success : true ,
+        error : null
+    };
+
+    if(users.get(user.username)==undefined) {
+        repo.create({ name : user.username , type : 'folder'} );
+        users.set(user.username , user);
+        return result;
+    }else {
+        result.success = false;
+        result.error = 'duplicate username exists';
+        return result;
+    }
 }
